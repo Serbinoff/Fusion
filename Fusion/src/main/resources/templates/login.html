@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <title>Login</title>
+   </head>
+   <body>
+      <!-- Include _menu.html -->
+      <!-- <th:block th:include="/menu"></th:block>-->
+       <iframe name="frame" style="display:none"></iframe>
+      <h1>Login</h1>
+       
+        <div th:if="${param.error}">
+            <span style= "color: red">Invalid Email or Password</span>
+        </div>
+        <div th:if="${param.logout}">
+            <span style= "color: red">You have been logged out</span>
+        </div>
+      
+      <h3>Enter email name and password:</h3>
+      <form method="post" action="/j_spring_security_check"  onsubmit="return TestLogin1(this.password.value);">
+         <table>
+            <tr>
+               <td>Email:</td>
+               <td><input type='email' id="user" name='user' required="required" placeholder="mymail@mail.com" />
+               	
+               </td>
+            </tr>
+            <tr>
+               <td>Password:</td>
+               <td><input type='password' id="password" name='password' value='' required="required"/>
+				
+               </td>
+            </tr>   
+            <tr>
+               <td><input name="submit" type="submit" value="submit" /></td>
+            </tr>
+         </table>
+      </form>
+      
+      <script type="text/javascript">
+           function TestLogin1(password){
+    		  if(/^[a-zA-Z1-9_]{4,20}$/.test(password) === false)
+    		    {alert('Incorrect password. Password should be between 4 and 20 characters, containing only letters, numbers and "_"'); return false;}
+    		 return true;
+    		}
+    	  </script>       
+   </body>  
+</html>
